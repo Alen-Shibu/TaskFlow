@@ -7,7 +7,7 @@ const useTaskStore = create((set) => ({
 
   // fetch all tasks
   fetchTasks: async () => {
-    set({ isLoading: true });
+    set({ isLoading: true, tasks : [] });
     try {
       const res = await axios.get('/api/task');
       set({ tasks: res.data });
