@@ -2,9 +2,25 @@ import Task from '../models/task.model.js';
 
 export const getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find({ userId: req.user.id });
+    let tasks;
+
+    // 👑 Admin → get ALL tasks
+    if (req.user.role === 'admin') {
+      tasks = await Task.find();
+    } 
+    
+    // 👤 Member → own + assigned tasks
+    else {
+      tasks = await Task.find({
+        $or: [
+          { userId: req.user.id },          // created by user
+          { assignedTo: req.user.id }       // assigned to user
+        ]
+      });
+    }
 
     res.status(200).json(tasks);
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -66,5 +82,26 @@ export const deleteTask = async (req, res) => {
     res.status(200).json({ message: 'Task deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+export const assignTask = async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    task.assignedTo = userId;
+    await task.save();
+
+    res.json(task);
+
+  } catch (error) {
+    console.log("Error in assignTask", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
