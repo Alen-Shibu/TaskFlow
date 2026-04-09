@@ -8,19 +8,19 @@ const useTaskStore = create((set) => ({
   // fetch all tasks from the backend
   fetchTasks: async () => {
     set({ isLoading: true });
-    const res = await axios.get('/api/tasks');
+    const res = await axios.get('/api/task');
     set({ tasks: res.data, isLoading: false });
   },
 
   // add a new task and push it into the local tasks array
   createTask: async (taskData) => {
-    const res = await axios.post('/api/tasks', taskData);
+    const res = await axios.post('/api/task', taskData);
     set((state) => ({ tasks: [res.data, ...state.tasks] }));
   },
 
   // update a task and replace it in the local array
   updateTask: async (id, updates) => {
-    const res = await axios.put(`/api/tasks/${id}`, updates);
+    const res = await axios.put(`/api/task/${id}`, updates);
     set((state) => ({
       tasks: state.tasks.map((t) => (t._id === id ? res.data : t)),
     }));
@@ -28,7 +28,7 @@ const useTaskStore = create((set) => ({
 
   // delete a task and remove it from the local array
   deleteTask: async (id) => {
-    await axios.delete(`/api/tasks/${id}`);
+    await axios.delete(`/api/task/${id}`);
     set((state) => ({
       tasks: state.tasks.filter((t) => t._id !== id),
     }));

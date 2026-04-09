@@ -1,0 +1,106 @@
+.taskpage {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.taskpage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.taskpage-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-name {
+  font-size: 14px;
+  color: #666;
+}
+
+.btn-logout {
+  padding: 7px 16px;
+  background: transparent;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.taskpage-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab {
+  padding: 7px 16px;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 13px;
+  color: #666;
+  text-transform: capitalize;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  border-color: #aaa;
+  color: #111;
+}
+
+.tab.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+.btn-primary {
+  padding: 9px 18px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #333;
+}
