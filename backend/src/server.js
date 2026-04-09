@@ -9,9 +9,14 @@ import cors from 'cors'
 const app = express()
 const PORT = process.env.PORT || 5000
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://task-flow-phi-ten.vercel.app"
+];
+
 app.use(cors({
-  origin: process.env.NODE_ENV === "development" ? "http://localhost:5173" : "https://task-flow-phi-ten.vercel.app", 
-  credentials: true,               
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 app.use(express.json())
