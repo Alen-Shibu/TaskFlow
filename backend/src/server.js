@@ -10,7 +10,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 app.use(cors({
-  origin: process.env.NODE_ENV === "development" ? "http://localhost:5173" : "https://task-flow-pearl-seven.vercel.app", 
+  origin: process.env.NODE_ENV === "development" ? "http://localhost:5173" : "https://task-flow-phi-ten.vercel.app", 
   credentials: true,               
 }));
 
