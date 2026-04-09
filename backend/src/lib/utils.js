@@ -12,7 +12,7 @@ export const generateToken = (user,res) => {
 
         //The other options are to enhance safety
         httpOnly:true,
-        sameSite:"strict",
+        sameSite:"none",
         secure:process.env.NODE_ENV === "development" ? false:true
     })
 } catch (error) {
