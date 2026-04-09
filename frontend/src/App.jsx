@@ -13,7 +13,7 @@ function App() {
   // on first load, check if a valid cookie session exists
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   if (isCheckingAuth) {
     return <PageLoader />; 
