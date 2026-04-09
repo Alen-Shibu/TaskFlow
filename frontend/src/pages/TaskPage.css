@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
+  gap: 14px;
 }
 
 .taskpage-header h2 {
@@ -21,11 +22,14 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .user-name {
   font-size: 14px;
   color: #666;
+  white-space: nowrap;
 }
 
 .btn-logout {
@@ -48,11 +52,23 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 14px;
 }
 
 .filter-tabs {
   display: flex;
   gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.filter-tabs::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 999px;
 }
 
 .tab {
@@ -103,4 +119,44 @@
 
 .btn-primary:hover {
   background: #333;
+}
+
+@media (max-width: 768px) {
+  .taskpage {
+    padding: 24px 16px;
+  }
+
+  .taskpage-header {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 22px;
+  }
+
+  .taskpage-header h2 {
+    font-size: 20px;
+  }
+
+  .header-right {
+    justify-content: space-between;
+  }
+
+  .taskpage-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .taskpage {
+    padding: 20px 14px;
+  }
+
+  .taskpage-header h2 {
+    font-size: 18px;
+  }
 }
