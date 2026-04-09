@@ -1,39 +1,61 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-// axios base url so we don't repeat it everywhere
 axios.defaults.baseURL = 'http://localhost:5000';
-axios.defaults.withCredentials = true; // send cookies with every request (for JWT cookie)
+axios.defaults.withCredentials = true;
 
 const useAuthStore = create((set) => ({
-  user: null,         // logged in user object, null if not logged in
-  isLoading: false,   // for showing loading states on buttons
+  user: null,
+  isLoading: false,
+  isCheckingAuth: true, // for initial auth check
 
-  // called on app load to check if user is already logged in via cookie
   checkAuth: async () => {
     try {
       const res = await axios.get('/api/auth/me');
       set({ user: res.data });
-    } catch {
+    } catch (err) {
       set({ user: null });
+    } finally {
+      set({ isCheckingAuth: false });
     }
   },
 
   register: async (name, email, password) => {
     set({ isLoading: true });
-    const res = await axios.post('/api/auth/register', { name, email, password });
-    set({ user: res.data, isLoading: false });
+    try {
+      const res = await axios.post('/api/auth/register', { name, email, password });
+      set({ user: res.data });
+    } catch (err) {
+      console.error('Register error:', err.response?.data || err.message);
+      throw err; // optional: lets UI handle error
+    } finally {
+      set({ isLoading: false });
+    }
   },
 
   login: async (email, password) => {
     set({ isLoading: true });
-    const res = await axios.post('/api/auth/login', { email, password });
-    set({ user: res.data, isLoading: false });
+    try {
+      const res = await axios.post('/api/auth/login', { email, password });
+      set({ user: res.data });
+    } catch (err) {
+      console.error('Login error:', err.response?.data || err.message);
+      throw err;
+    } finally {
+      set({ isLoading: false });
+    }
   },
 
   logout: async () => {
-    await axios.post('/api/auth/logout');
-    set({ user: null });
+    set({ isLoading: true });
+    try {
+      await axios.post('/api/auth/logout');
+      set({ user: null });
+    } catch (err) {
+      console.error('Logout error:', err.response?.data || err.message);
+    } finally {
+      set({ isLoading: false });
+    }
   },
 }));
 

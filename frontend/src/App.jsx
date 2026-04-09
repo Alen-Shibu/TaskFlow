@@ -5,20 +5,24 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import TaskPage from './pages/TaskPage';
 import './App.css';
+import PageLoader from './components/PageLoader';
 
 function App() {
-  const { user, checkAuth } = useAuthStore();
+  const { user, isCheckingAuth, checkAuth } = useAuthStore();
 
   // on first load, check if a valid cookie session exists
   useEffect(() => {
     checkAuth();
   }, []);
 
+  if (isCheckingAuth) {
+    return <PageLoader />; 
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* if not logged in, redirect to login */}
-        <Route path="/" element={user ? <TaskPage /> : <Navigate to="/login" />} />
+        <Route path="/" element={user ? <TaskPage /> : <Navigate to="/register" />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
       </Routes>
