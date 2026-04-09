@@ -32,7 +32,7 @@ export const register = async (req, res) => {
 
         await newUser.save();
 
-        generateToken(newUser._id, res);
+        generateToken(newUser, res);
 
         return res.status(201).json({
             _id: newUser._id,
@@ -66,7 +66,7 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        generateToken(user._id, res);
+        generateToken(user, res);
 
         return res.status(200).json({
             _id: user._id,
