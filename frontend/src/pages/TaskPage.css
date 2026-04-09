@@ -1,7 +1,7 @@
 .taskpage {
-  max-width: 780px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 40px 24px;
 }
 
 .taskpage-header {
@@ -9,7 +9,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
-  gap: 14px;
 }
 
 .taskpage-header h2 {
@@ -22,8 +21,6 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
 }
 
 .user-name {
@@ -52,23 +49,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  gap: 14px;
 }
 
 .filter-tabs {
   display: flex;
   gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-
-.filter-tabs::-webkit-scrollbar {
-  height: 6px;
-}
-
-.filter-tabs::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.12);
-  border-radius: 999px;
 }
 
 .tab {
@@ -130,6 +115,7 @@
     flex-direction: column;
     align-items: stretch;
     margin-bottom: 22px;
+    gap: 14px;
   }
 
   .taskpage-header h2 {
@@ -138,12 +124,27 @@
 
   .header-right {
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .taskpage-toolbar {
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
+  }
+
+  .filter-tabs {
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .filter-tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .filter-tabs::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.12);
+    border-radius: 999px;
   }
 
   .btn-primary {

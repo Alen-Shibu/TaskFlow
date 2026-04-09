@@ -47,7 +47,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
 .status-badge {
@@ -71,7 +70,6 @@
   display: flex;
   gap: 8px;
   flex-shrink: 0;
-  flex-wrap: wrap;
 }
 
 .btn-edit {
@@ -112,5 +110,10 @@
   .task-card-actions {
     justify-content: flex-start;
     width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .task-meta {
+    flex-wrap: wrap;
   }
 }
