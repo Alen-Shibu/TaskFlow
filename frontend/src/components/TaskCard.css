@@ -111,6 +111,8 @@
     justify-content: flex-start;
     width: 100%;
     flex-wrap: wrap;
+    margin-top: 1rem;
+    margin-left: 1.2rem;
   }
 
   .task-meta {
