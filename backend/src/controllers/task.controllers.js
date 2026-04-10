@@ -4,17 +4,15 @@ export const getTasks = async (req, res) => {
   try {
     let tasks;
 
-    // 👑 Admin → get ALL tasks
     if (req.user.role === 'admin') {
       tasks = await Task.find();
     } 
     
-    // 👤 Member → own + assigned tasks
     else {
       tasks = await Task.find({
         $or: [
-          { userId: req.user.id },          // created by user
-          { assignedTo: req.user.id }       // assigned to user
+          { userId: req.user.id },          
+          { assignedTo: req.user.id }       
         ]
       });
     }
@@ -39,7 +37,7 @@ export const createTask = async (req, res) => {
       userId: req.user.id,
     });
 
-    res.status(201).json(task); // 201 = something was created
+    res.status(201).json(task); 
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
