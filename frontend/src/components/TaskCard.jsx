@@ -28,7 +28,7 @@ function TaskCard({ task, onEdit }) {
             <span className={`status-badge ${task.status}`}>{task.status}</span>
             {task.dueDate && (
               <span className="due-date">
-                Due {new Date(task.dueDate).toLocaleDateString()}
+                Due {new Date(task.dueDate).toLocaleDateString('en-IN')}
               </span>
             )}
           </div>

@@ -9,27 +9,27 @@ function TaskPage() {
   const { user, logout } = useAuthStore();
   const { tasks, fetchTasks, isLoading } = useTaskStore();
 
-  const [showModal, setShowModal] = useState(false);   // controls add task modal
-  const [editTask, setEditTask] = useState(null);       // task being edited, null = new task
-  const [filter, setFilter] = useState('all');          // filter by status
+  const [showModal, setShowModal] = useState(false);  
+  const [editTask, setEditTask] = useState(null);     
+  const [filter, setFilter] = useState('all');
 
-  // load tasks when page mounts
+
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  // filter tasks based on selected status tab
+ 
   const filteredTasks = filter === 'all'
     ? tasks
     : tasks.filter((t) => t.status === filter);
 
   const handleEdit = (task) => {
-    setEditTask(task);    // pre-fill the modal with this task's data
+    setEditTask(task);   
     setShowModal(true);
   };
 
   const handleAddNew = () => {
-    setEditTask(null);    // no pre-fill = create mode
+    setEditTask(null);   
     setShowModal(true);
   };
 
